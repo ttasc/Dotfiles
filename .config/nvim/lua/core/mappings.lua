@@ -103,12 +103,12 @@ M.plugins = {
     { {    'x','o'}, 'N'              , '<Plug>(leap-backward-till)'                         , '󰷺 Leap: backward till'               },
     { {'n','v','o'}, 'g<space>'       , '<Plug>(leap-from-window)'                           , '󰷺 Leap: from window'                 },
     -- Codeium
-    -- { 'i'          , '<A-c>'     ,
-    --     function() require("cmp").abort() return vim.fn['codeium#Complete']()             end, "Codeium: Get"   , opts={expr = true} },
-    -- { 'i'          , '<A-a>'     , function()return vim.fn['codeium#Accept']()            end, "Codeium: Accept", opts={expr = true} },
-    -- { 'i'          , '<A-d>'     , function()return vim.fn['codeium#CycleCompletions'](1) end, "Codeium: Next"  , opts={expr = true} },
-    -- { 'i'          , '<A-s>'     , function()return vim.fn['codeium#CycleCompletions'](-1)end, "Codeium: Prev"  , opts={expr = true} },
-    -- { 'i'          , '<A-x>'     , function()return vim.fn['codeium#Clear']()             end, "Codeium: Clear" , opts={expr = true} },
+    { 'i'          , '<A-c>'     ,
+        function() require("cmp").abort() return vim.fn['codeium#Complete']()             end, "Codeium: Get"   , opts={expr = true} },
+    { 'i'          , '<A-;>'     , function()return vim.fn['codeium#Accept']()            end, "Codeium: Accept", opts={expr = true} },
+    { 'i'          , '<A-n>'     , function()return vim.fn['codeium#CycleCompletions'](1) end, "Codeium: Next"  , opts={expr = true} },
+    { 'i'          , '<A-p>'     , function()return vim.fn['codeium#CycleCompletions'](-1)end, "Codeium: Prev"  , opts={expr = true} },
+    { 'i'          , '<A-x>'     , function()return vim.fn['codeium#Clear']()             end, "Codeium: Clear" , opts={expr = true} },
 }
 
 M.lspconfig = {

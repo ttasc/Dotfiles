@@ -2,7 +2,16 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -25,6 +34,15 @@ return require("lazy").setup({
                 globalstatus = true,
                 component_separators = '',
                 section_separators = '',
+            },
+            sections = {
+                lualine_x = {
+                    {
+                        'vim.api.nvim_call_function("codeium#GetStatusString", {})',
+                        icon = '󰘦',
+                        color = { fg = '#09b6a2', gui = 'bold' },
+                    },
+                    'encoding', 'fileformat', 'filetype'},
             },
         },
     },
@@ -158,16 +176,13 @@ return require("lazy").setup({
     -- }}}
 
     -- {{{ AI
-    -- { "https://github.com/Exafunction/codeium.vim",
-    --     event = { "BufReadPost", "BufNewFile" },
-    --     config = function()
-    --         vim.g.codeium_manual = true
-    --         vim.g.codeium_no_map_tab = true
-    --         vim.g.codeium_filetypes = {
-    --             TelescopePrompt = false,
-    --         }
-    --     end
-    -- },
+    { "https://github.com/Exafunction/codeium.vim",
+        event = { "BufReadPost", "BufNewFile" },
+        config = function()
+            -- vim.g.codeium_manual = true
+            vim.g.codeium_disable_bindings = 1
+        end
+    },
     -- }}}
 
     -- {{{ Miscellaneous

@@ -3,7 +3,7 @@ local function augroup(name)
 end
 
 vim.api.nvim_create_autocmd("User", {
-    group = vim.api.nvim_create_augroup("Startuptime", { clear = true }),
+    group = augroup("Startuptime"),
     pattern = "LazyVimStarted",
     callback = function()
         vim.cmd("echo '' | redraw")
@@ -12,12 +12,6 @@ vim.api.nvim_create_autocmd("User", {
         vim.notify("⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms", vim.log.levels.INFO, { render = "minimal" })
     end,
 }) -- Show startup time
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-    group = vim.api.nvim_create_augroup("AutoSourceTEST", { clear = true }),
-    pattern = { "test.lua", "tmp.lua" },
-    command = "source %",
-}) -- Auto source test.lua or tmp.lua file
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     group = augroup("not_cmt_newline"),

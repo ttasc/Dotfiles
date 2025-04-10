@@ -22,18 +22,9 @@ mason.setup({
     }
 })
 
-local function lspSymbol(name, icon)
-    local hl = "DiagnosticSign" .. name
-    vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
-end
-
-lspSymbol("Error", "󰅙")
-lspSymbol("Info", "󰋼")
-lspSymbol("Hint", "󰌵")
-lspSymbol("Warn", "")
-
+local x = vim.diagnostic.severity
 vim.diagnostic.config({
-    signs = true,
+    signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰌵" } },
     update_in_insert = true,
     underline = true,
     severity_sort = true,
@@ -42,6 +33,13 @@ vim.diagnostic.config({
         header = "",
     },
 })
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or 'rounded' -- Thêm border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",

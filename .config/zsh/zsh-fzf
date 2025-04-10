@@ -29,11 +29,12 @@ FZF_STYLE="
     --color=separator:#ff966c
     --color=spinner:#ff007c
 "
-export FZF_PREVIEW="
+FZF_PREVIEW="
     --preview '$previewtool {}'
     --preview-window='hidden:wrap'
     --bind='ctrl-p:toggle-preview'
 "
 export FZF_DEFAULT_OPTS="
     $FZF_STYLE
+    $FZF_PREVIEW
 "

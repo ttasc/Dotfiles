@@ -16,6 +16,7 @@ screenshot_full() {
 
 screenshot_selected() {
     selected=$(slop -f "%x %y %w %h")
+    [ -z "$selected" ] && exit
     X=$(echo "$selected" | awk '{print $1}')
     Y=$(echo "$selected" | awk '{print $2}')
     W=$(echo "$selected" | awk '{print $3}')
