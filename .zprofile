@@ -36,7 +36,7 @@ export PATH="$GOPATH/bin:$PATH"
 ### Rust
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 ### Java (java 21 as default)
-export JAVA_HOME="/usr/lib/jvm/java-21-openjdk/bin/java"
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 ### "bat" as manpager
