@@ -56,6 +56,7 @@ M.general = {
     { 'i'          ,'<C-k>'           , '<Up>'                                               , ' Move cursor Up'                    },
     { 'i'          ,'<C-l>'           , '<Right>'                                            , ' Move cursor Right'                 },
     { 'i'          ,'<C-s>'           , '<cmd> w <CR>'                                       , 'Save'                                },
+    { 'n'          ,'<C-s>'           , '<cmd> w <CR>'                                       , 'Save'                                },
     { 'n'          ,'<leader>th'      , '<C-w>t<C-w>H'                                       , 'Switch to horizontal split'          },
     { 'n'          ,'<leader>tk'      , '<C-w>t<C-w>K'                                       , 'Switch to vertical split'            },
     { 'n'          ,'<A-t>'           , '<cmd> split|term <CR>'                              , 'Terminal in horiz split'             },
