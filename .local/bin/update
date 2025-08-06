@@ -1,10 +1,11 @@
 #!/bin/sh
 
 if [ -x "$(command -v yay)" ]; then
-    yay -Syyu
+    yay -Syu "$@"
 else
-    sudo pacman -Syyu
+    sudo pacman -Syu "$@"
 fi
+
 remaps
 xset r rate 300 50
 kill -s 36 "$(pidof -x dwmbar)"
