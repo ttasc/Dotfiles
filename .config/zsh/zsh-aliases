@@ -17,12 +17,12 @@ alias push="git push"
 alias pull="git pull"
 alias clone="git clone"
 
-### Use `eza` instead of `ls`
-alias ll="eza -l --color=always --group-directories-first"
-alias la="eza -al --color=always --group-directories-first"
-alias ls="eza -a --color=always --group-directories-first"
-alias lt="eza -aT --color=always --group-directories-first"
-alias l.="eza -a | egrep '^\.'"
+### ls
+alias ls="ls -h --color=always"
+alias ll="ls -l --group-directories-first"
+alias la="ls -al --group-directories-first"
+alias lt="ls -alt"
+alias lS="ls -alS"
 
 ### Navigation
 up() {
