@@ -1,0 +1,14 @@
+#!/bin/sh
+
+filetypes="$*"
+
+[ -z "$filetypes" ] && exit 0
+
+fts="$1"
+
+for type in $filetypes; do
+    if [ "$type" = "$fts" ]; then continue; fi
+    fts="$fts|$type"
+done
+
+find . -type f -regextype posix-egrep -regex ".+\.($fts)" | grep -v libs | sed 's/.*/"&"/' | xargs wc -l

@@ -40,10 +40,8 @@ bindkey '^e' edit-command-line
 bindkey -M vicmd '^e' edit-command-line
 
 ### source aliases, vimode, fzf, plugins
-[ -f "$ZDOTDIR/zsh-aliases" ] && source "$ZDOTDIR"/zsh-aliases
-[ -f "$ZDOTDIR/zsh-bindkey" ] && source "$ZDOTDIR"/zsh-bindkey
-[ -f "$ZDOTDIR/zsh-vimode" ] && source "$ZDOTDIR"/zsh-vimode
-[ -f "$ZDOTDIR/zsh-fzf" ] && source "$ZDOTDIR"/zsh-fzf
+for s in "$ZDOTDIR"/sources/*.zsh; do source "$s"; done
+
 [ -d "$ZDOTDIR/plugins/zsh-autosuggestions" ] \
     && source "$ZDOTDIR"/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh \
     || git clone https://github.com/zsh-users/zsh-autosuggestions "$ZDOTDIR/plugins/zsh-autosuggestions"

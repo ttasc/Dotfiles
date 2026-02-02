@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Dependencies: dmenu
+
+file="$HOME/.stuff"
+height=$(wc -l < "$file")
+prompt="Add/delete a task:"
+string=$(dmenu -l "$height" -p "$prompt" "$@" < "$file")
+
+printf "%s" "$string" | xclip -selection clipboard
