@@ -2,6 +2,7 @@
 
 local mason_ok, mason = pcall(require, "mason")
 local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+
 if (not mason_ok) or (not mason_lspconfig_ok) then
   return
 end
@@ -35,19 +36,12 @@ vim.diagnostic.config({
 })
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+---@diagnostic disable-next-line: duplicate-set-field
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts = opts or {}
   opts.border = opts.border or 'rounded' -- Thêm border
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-})
 
 ----------
 -- CORE --
@@ -93,6 +87,11 @@ local mason_list = {
     }
 }
 
+mason_lspconfig.setup {
+    ensure_installed = vim.tbl_keys(mason_list.servers),
+    automatic_installation = true,
+}
+
 -- Custom cmd to install all mason binaries listed by mason_list.others
 vim.api.nvim_create_user_command("MasonInstallDLF", function()
     vim.cmd("MasonInstall " .. table.concat(mason_list.others, " "))
@@ -112,17 +111,8 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-mason_lspconfig.setup {
-    ensure_installed = vim.tbl_keys(mason_list.servers),
-    automatic_installation = true,
-}
-
-mason_lspconfig.setup_handlers {
-    function(server_name)
-        require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = mason_list.servers[server_name],
-        }
-    end,
-}
+vim.lsp.config("*", { capabilities = capabilities, on_attach = on_attach })
+for name, config in pairs(mason_list.servers) do
+    vim.lsp.config(name, { settings = config })
+    vim.lsp.enable(name)
+end

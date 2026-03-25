@@ -172,7 +172,7 @@ return require("lazy").setup({
         },
     },
     { "https://github.com/kylechui/nvim-surround", event = "VeryLazy", version = "*", opts = {} },
-    { "https://github.com/ggandor/leap.nvim", event = "VeryLazy" },
+    { "https://codeberg.org/andyg/leap.nvim", event = "VeryLazy" },
     -- }}}
 
     -- {{{ AI

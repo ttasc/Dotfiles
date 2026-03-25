@@ -18,6 +18,9 @@ M.load_mappings = function(section, mapping_opt)
     end)
 end
 
+-- local diagnostic_next = function() vim.diagnostic.jump({count = 1, float = true}) end
+-- local diagnostic_prev = function() vim.diagnostic.jump({count =-1, float = true}) end
+
 -- Modes
 --  "n" = normal
 --  "i" = insert
@@ -66,8 +69,10 @@ M.general = {
     { 'n'          ,'<C-h>'           , '<cmd> bprev <CR>'                                   , 'Previous Buffer'                     },
     { 'n'          ,'<C-l>'           , '<cmd> bnext <CR>'                                   , 'Next Buffer'                         },
     { 'n'          ,'<leader><leader>', '<cmd> nohlsearch <CR>'                              , 'Turn off highlighting'               },
-    { 'n'          ,'[d'              , vim.diagnostic.goto_prev                             , 'Previous diagnostic'                 },
-    { 'n'          ,']d'              , vim.diagnostic.goto_next                             , 'Next diagnostic'                     },
+    { 'n'          ,'[d'              ,
+        function() vim.diagnostic.jump({count =-1, float = true}) end                        , 'Previous diagnostic'                 },
+    { 'n'          ,']d'              ,
+        function() vim.diagnostic.jump({count = 1, float = true}) end                        , 'Next diagnostic'                     },
     { 'n'          ,'F'               , vim.diagnostic.open_float                            , 'Show diagnostics'                    },
     { 'n'          ,'L'               , vim.diagnostic.setloclist                            , 'List all diagnostics'                },
 }
