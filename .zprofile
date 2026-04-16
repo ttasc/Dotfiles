@@ -20,6 +20,7 @@ export BROWSER="librewolf"
 export XDG_CURRENT_DESKTOP="dwm"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
@@ -29,11 +30,20 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export HISTFILE="$XDG_DATA_HOME/history"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export XCURSOR_PATH="/usr/share/icons":"$XDG_DATA_HOME/icons"
 
+### Docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+### Python
+export PYTHON_HISTORY="$XDG_STATE_HOME/python_history"
 ### Go
 export GOPATH="$XDG_DATA_HOME/go"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export PATH="$GOPATH/bin:$PATH"
+### Npm
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 ### Rust
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 ### Java (java 21 as default)

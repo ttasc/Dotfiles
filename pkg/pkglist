@@ -101,12 +101,11 @@ gdb
 alacritty
 chromium
 #pavucontrol
-lxsession-gtk3
-pcmanfm-gtk3
+lxsession
+pcmanfm
 zathura
 zathura-pdf-poppler
 #zathura-pdf-mupdf
-lxappearance-gtk3
 capitaine-cursors
 arc-gtk-theme
 ### Shell
