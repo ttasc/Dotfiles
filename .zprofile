@@ -4,7 +4,7 @@
 
 ### Path
 if [ -d "$HOME/.bin" ]; then
-    export PATH="${HOME}/.bin:$PATH"
+    export PATH="$PATH:$(find ~/.bin -type d | paste -sd ':' -)"
 fi
 if [ -d "$HOME/.local/bin" ]; then
     export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
@@ -55,7 +55,7 @@ export QT_QPA_PLATFORMTHEME="gtk2"        # Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2=1                  # Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D" # May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1      # Fix for Java applications in dwm
-export LIBVA_DRIVER_NAME="nvidia"         # Configure NVIDIA VA-API
+# export LIBVA_DRIVER_NAME="nvidia"         # Configure NVIDIA VA-API
 
 # Start graphical server on user's current tty if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
