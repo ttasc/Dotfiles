@@ -177,20 +177,20 @@ command! reload :write | restart full
 " program.  There is also %FOREGROUND, which is useful for entering passwords.
 
 " Pdf
-filextype {*.pdf},<application/pdf> zathura %c %i, apvlv %c, xpdf %c
+filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
 " fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
 
 " PostScript
 filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
         \ {View in zathura}
-        \ zathura %f,
+        \ zathura %f &,
         \ {View in gv}
         \ gv %c %i,
 
 " Djvu
 filextype {*.djvu},<image/vnd.djvu>
         \ {View in zathura}
-        \ zathura %f,
+        \ zathura %f &,
         \ {View in apvlv}
         \ apvlv %f,
 

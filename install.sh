@@ -40,9 +40,12 @@ install_graphics() {
     case $yn in
         ""|[Yy]* )
             sudo pacman -S --needed $(comm -12 <(pacman -Slq | sort) <(sort $gpclist))
-            read -r -p "Do you want to install Envycontrol? [Y/n] " yn
+            read -r -p "Do you want to install Envycontrol (ttasc/envycontrol-go)? [Y/n] " yn
             case $yn in
-                ""|[Yy]* ) yay -S envycontrol ;;
+                ""|[Yy]* ) sudo curl -L \
+                    https://github.com/ttasc/envycontrol-go/releases/latest/download/envycontrol-linux-amd64 \
+                    -o /usr/local/bin/envycontrol && \
+                    sudo chmod +x /usr/local/bin/envycontrol;;
             esac
         ;;
     esac

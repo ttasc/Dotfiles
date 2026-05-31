@@ -13,6 +13,10 @@
       "rev": "3c0a4f8a7be75113a6e19be13b7cc37210d6e26a",
       "src": "https://github.com/Exafunction/codeium.vim"
     },
+    "copilot.lua": {
+      "rev": "393fd009c39b24dfc4cb4bf6f632288c64b13258",
+      "src": "https://github.com/zbirenbaum/copilot.lua"
+    },
     "fidget.nvim": {
       "rev": "889e2e96edef4e144965571d46f7a77bcc4d0ddf",
       "src": "https://github.com/j-hui/fidget.nvim"

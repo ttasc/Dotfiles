@@ -16,8 +16,8 @@ vim.opt.confirm = true
 
 -- UI
 vim.opt.showmode = true
-vim.opt.laststatus = 0
-vim.opt.showtabline = 0
+-- vim.opt.laststatus = 0
+-- vim.opt.showtabline = 0
 vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true

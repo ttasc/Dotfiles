@@ -1,4 +1,17 @@
 #!/bin/sh
+#
+# filetypes="$*"
+#
+# [ -z "$filetypes" ] && exit 0
+#
+# fts="$1"
+#
+# for type in $filetypes; do
+#     if [ "$type" = "$fts" ]; then continue; fi
+#     fts="$fts|$type"
+# done
+#
+# find . -type f -regextype posix-egrep -regex ".+\.($fts)" | grep -v libs | sed 's/.*/"&"/' | xargs wc -l
 
 filetypes="$*"
 
@@ -11,4 +24,11 @@ for type in $filetypes; do
     fts="$fts|$type"
 done
 
-find . -type f -regextype posix-egrep -regex ".+\.($fts)" | grep -v libs | sed 's/.*/"&"/' | xargs wc -l
+# Tìm file -> Bỏ qua thư mục libs -> Đọc nội dung file -> Loại bỏ comment và dòng trống -> Đếm dòng
+find . -type f -regextype posix-egrep -regex ".+\.($fts)" \
+    | grep -v libs \
+    | sed 's/.*/"&"/' \
+    | xargs cat \
+    | grep -vE '^\s*(//|#|/\*|\*|<!--)' \
+    | grep -vE '^\s*$' \
+    | wc -l

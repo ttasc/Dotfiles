@@ -16,7 +16,7 @@ shopt -s checkwinsize # check the window size after each command and, if necessa
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then debian_chroot=$(cat /etc/debian_chroot); fi # set variable identifying the chroot you work in (used in the prompt below)
 
 case "$TERM" in
-    xterm-color|*-256color) PS1='${debian_chroot:+($debian_chroot)}\[\033[1m\]\[\033[31m\][\[\033[33m\]\u\[\033[32m\]@\[\033[36m\]\h \[\033[35m\]\w\[\033[31m\]]\[\033[33m\]$?\[\033[37m\]\$\[\033[m\] ' ;;
+    xterm-color|*-256color) PS1='${debian_chroot:+($debian_chroot)}\[\033[1m\]\[\033[31m\][\[\033[33m\]\u\[\033[32m\]@\[\033[36m\]\h \[\033[35m\]\w\[\033[31m\]]\[\033[33m\]$?\[\033[37m\]\n\$\[\033[m\] ' ;;
     *) PS1='${debian_chroot:+($debian_chroot)}[\u@\h \w]$?$ ' ;;
 esac
 # If this is an xterm set the title to user@host:dir

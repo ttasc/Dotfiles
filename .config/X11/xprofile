@@ -4,10 +4,15 @@
 # If you use startx/xinit like a Chad, this file will also be sourced.
 
 xrdb "${XDG_CONFIG_HOME:-$HOME/.config}"/X11/Xresources & xrdbpid=$!    # Use Xresources colors/settings on startup
-xrandr --setprovideroutputsource modesetting NVIDIA-0; xrandr --auto    # EnvyControl settings for NVIDIA mode if not use DM
+
+# EnvyControl settings for NVIDIA mode if not use DM
+[ "$(envycontrol -q)" = "nvidia" ] && xrandr --setprovideroutputsource modesetting NVIDIA-0; xrandr --auto
+
 xrandr --dpi 96                                                         # Set DPI. Maybe use a larger number for larger screens
 xset s off & xset -dpms & xset s noblank &                              # Don't turn of the display randomly
 xset r rate 300 50                                                      # delay 660 -> 300; repeat rate 25 -> 50
+
+[ "$(xrandr --query | grep -c " connected ")" -gt 1 ] && 2m
 
 autostart="pipewire
 dunst xcompmgr lxsession unclutter fcitx5

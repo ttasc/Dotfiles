@@ -86,7 +86,7 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
 [window]
-opacity = 0.9
+opacity = 1.0
 title = "Alacritty"
 
 [window.class]

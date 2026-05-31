@@ -8,8 +8,8 @@ map d scroll half-down
 map D toggle_page_mode
 map r reload
 map R rotate
-map K zoom in
-map J zoom out
+# map K zoom in
+# map J zoom out
 map i recolor
 map p print
 map g goto top
@@ -18,8 +18,8 @@ map [fullscreen] d scroll half-down
 map [fullscreen] D toggle_page_mode
 map [fullscreen] r reload
 map [fullscreen] R rotate
-map [fullscreen] K zoom in
-map [fullscreen] J zoom out
+# map [fullscreen] K zoom in
+# map [fullscreen] J zoom out
 map [fullscreen] i recolor
 map [fullscreen] p print
 map [fullscreen] g goto top

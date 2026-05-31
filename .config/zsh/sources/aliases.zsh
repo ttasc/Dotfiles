@@ -16,6 +16,12 @@ alias gco="git commit -m"
 alias push="git push"
 alias pull="git pull"
 alias clone="git clone"
+retag() {
+    git tag -d "$1"               && \
+    git push --delete origin "$1" && \
+    git tag "$1"                  && \
+    git push origin "$1"
+}
 
 ### ls
 alias ls="ls -h --color=always"
