@@ -109,8 +109,18 @@ paclsfiles() {
 
 ### Drives handle
 alias lsblk="lsblk -po 'uuid,name,type,size,label,mountpoint,fstype'"
-alias mount='sudo mount -o uid="$(id -u)",gid="$(id -g)"'
 alias umount="sudo umount -l"
+mount() {
+    local drive="$1"
+    local mp="$2"
+    local fstype=$(lsblk -no FSTYPE "$drive" 2>/dev/null | tr -d '[:space:]')
+    [ -z "$fstype" ] && return 1
+    case "$fstype" in
+        vfat|exfat|ntfs|ntfs-3g|msdos|fat) sudo mount "$drive" "$mp" -o rw,uid="$(id -u)",gid="$(id -g)",dmask=022,fmask=133 ;;
+        ext2|ext3|ext4|btrfs|xfs|f2fs|reiserfs) sudo mount "$drive" "$mp" ;;
+        *) sudo mount "$drive" "$mp" ;;
+    esac
+}
 eject() {
     echo 1 | sudo tee /sys/block/"$1"/device/delete >/dev/null
 }
